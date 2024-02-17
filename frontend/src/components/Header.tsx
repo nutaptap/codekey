@@ -1,6 +1,6 @@
 export function Header() {
   return (
-    <header className="p-6 max-w-[1150px] flex items-center justify-between mx-auto">
+    <header className="w-screen p-6 max-w-[1150px] flex items-center justify-between mx-auto">
       <div className="flex items-center select-none cursor-pointer">
         <span className="text-3xl mr-[2px] text-[#76689a]">&lt;</span>
         <svg
