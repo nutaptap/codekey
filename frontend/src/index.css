@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Cascadia Mono PL";
+  src: url("/fonts/CascadiaMonoPL.ttf") format("truetype");
+}
