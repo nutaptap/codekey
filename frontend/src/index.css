@@ -8,11 +8,23 @@
 }
 
 @layer components {
-  .caret {
+  .caret,
+  .reverse {
     position: relative;
   }
 
   .caret::after {
+    position: absolute;
+    content: "";
+    border-right: #f1e2e4 2px solid;
+    height: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: blink 1s infinite;
+    z-index: 1;
+  }
+
+  .reverse::before {
     position: absolute;
     content: "";
     border-right: #f1e2e4 2px solid;
