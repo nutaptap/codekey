@@ -1,26 +1,29 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 
 export function TypingTest() {
-  const originalCode = ["function potato()", "{console.log('potato')}"]
+  const originalCode = useMemo(
+    () => ["function potato()", "{console.log('potato')}"],
+    []
+  )
   const initialTypedCode = originalCode.map(() => "")
   const [typedCode, setTypedCode] = useState(initialTypedCode)
   const [currentLine, setCurrentLine] = useState(0)
 
-  function isCorrect(arrayIndex, charIndex) {
+  function isCorrect(arrayIndex: number, charIndex: number) {
     const charOne = originalCode[arrayIndex]?.[charIndex]
     const charTwo = typedCode[arrayIndex]?.[charIndex]
 
     return charOne === charTwo ? true : false
   }
 
-  function isTyped(arrayIndex, charIndex) {
+  function isTyped(arrayIndex: number, charIndex: number) {
     const char = typedCode[arrayIndex]?.[charIndex]
 
     return char === undefined ? false : true
   }
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       const specialKeys = [
         "Shift",
         "CapsLock",
