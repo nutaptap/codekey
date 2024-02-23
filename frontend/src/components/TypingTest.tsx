@@ -8,6 +8,8 @@ export function TypingTest() {
   const initialTypedCode = originalCode.map(() => "")
   const [typedCode, setTypedCode] = useState(initialTypedCode)
   const [currentLine, setCurrentLine] = useState(0)
+  const [time, setTime] = useState(15)
+  const [maxTime, setMaxTime] = useState(time)
 
   function isCorrect(arrayIndex: number, charIndex: number) {
     const charOne = originalCode[arrayIndex]?.[charIndex]
@@ -40,6 +42,23 @@ export function TypingTest() {
         "Alt",
         "AltGraph",
       ]
+
+      if (maxTime === 15 && time === 15) {
+        let intervalId: number | undefined = undefined
+
+        intervalId = setInterval(() => {
+          setTime((prevTime) => {
+            if (prevTime > 0) {
+              return prevTime - 1
+            } else {
+              clearInterval(intervalId)
+              return prevTime
+            }
+          })
+        }, 1000)
+
+        return () => clearInterval(intervalId)
+      }
 
       if (specialKeys.includes(e.key) || e.key.startsWith("F")) {
         e.preventDefault()
@@ -90,10 +109,11 @@ export function TypingTest() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown)
     }
-  }, [typedCode, currentLine, originalCode])
+  }, [typedCode, currentLine, originalCode, time, maxTime])
 
   return (
     <section>
+      <div className="text-center my-10">{time}</div>
       <article className="relative my-20">
         <div className="mb-8">
           {originalCode.map((line, lineIndex) => (
