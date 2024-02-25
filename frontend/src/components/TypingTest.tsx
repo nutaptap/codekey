@@ -18,6 +18,7 @@ export function TypingTest() {
   const [maxTime, setMaxTime] = useState(time)
   const [score, setScore] = useState(0)
   const [mistakes, setMistakes] = useState(0)
+  const [start, setStart] = useState(false)
 
   function isCorrect(arrayIndex: number, charIndex: number) {
     const charOne = originalCode[arrayIndex]?.[charIndex]
@@ -83,24 +84,10 @@ export function TypingTest() {
         "AltGraph",
       ]
 
-      if (maxTime === time) {
-        let intervalId: number | undefined = undefined
-
-        intervalId = setInterval(() => {
-          setTime((prevTime) => {
-            if (prevTime > 0) {
-              return prevTime - 1
-            } else {
-              clearInterval(intervalId)
-              return prevTime
-            }
-          })
-        }, 1000)
-
-        return () => clearInterval(intervalId)
-      }
-
-      if (specialKeys.includes(e.key) || e.key.startsWith("F")) {
+      if (
+        specialKeys.includes(e.key) ||
+        (e.key.length > 1 && e.key.startsWith("F"))
+      ) {
         e.preventDefault()
         return
       }
@@ -148,6 +135,24 @@ export function TypingTest() {
 
         return updatedTypedCode
       })
+
+      if (start === false) {
+        setStart(true)
+        let intervalId: number | undefined = undefined
+
+        intervalId = setInterval(() => {
+          setTime((prevTime) => {
+            if (prevTime > 0) {
+              return prevTime - 1
+            } else {
+              clearInterval(intervalId)
+              return prevTime
+            }
+          })
+        }, 1000)
+
+        return () => clearInterval(intervalId)
+      }
     }
     window.addEventListener("keydown", handleKeyDown)
     return () => {
@@ -163,6 +168,7 @@ export function TypingTest() {
     mistakes,
     score,
     completeCodeBlock,
+    start,
   ])
 
   useEffect(() => {
@@ -190,10 +196,10 @@ export function TypingTest() {
       )
       const totalScore = thisScore + score
 
-      const thislMistakes = originalCode.reduce((total, line, lineIndex) => {
+      const thislMistakes = typedCode.reduce((total, line, lineIndex) => {
         let mistakes = 0
         for (let charIndex = 0; charIndex < line.length; charIndex++) {
-          if (typedCode[lineIndex]?.[charIndex] !== line[charIndex]) {
+          if (originalCode[lineIndex]?.[charIndex] !== line[charIndex]) {
             mistakes++
           }
         }
