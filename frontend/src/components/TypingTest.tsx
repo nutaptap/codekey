@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 import { codeBlocks } from "../data/codeBlocks.json"
+import { TimeMenu } from "./TimeMenu"
 
 export function TypingTest() {
   const navigate = useNavigate()
@@ -221,30 +222,14 @@ export function TypingTest() {
 
   return (
     <section>
-      <nav>
-        <ul className="flex space-x-2">
-          <li
-            onClick={handleTime}
-            className="cursor-pointer text-xs font-semibold tracking-wider rounded-xl border-2 border-[#76689a] bg-[#2b2b2c] px-3 py-2 flex"
-          >
-            15
-          </li>
-          <li
-            onClick={handleTime}
-            className="cursor-pointer text-xs font-semibold tracking-wider rounded-xl border-2 border-[#76689a] bg-[#2b2b2c] px-3 py-2 flex"
-          >
-            60
-          </li>
-          <li
-            onClick={handleTime}
-            className="cursor-pointer text-xs font-semibold tracking-wider rounded-xl border-2 border-[#76689a] bg-[#2b2b2c] px-3 py-2 flex"
-          >
-            120
-          </li>
-        </ul>
-      </nav>
-      <div className="text-center my-10">{time}</div>
-      <article className="relative my-10">
+      {start === false ? (
+        <div className="flex justify-center">
+          <TimeMenu handleTime={handleTime} time={time} />
+        </div>
+      ) : (
+        <div className="text-center my-10 text-lg text-[#76689a]">{time}</div>
+      )}
+      <article className="relative my-16 text-xl">
         <div className="mb-8">
           {originalCode.map((line, lineIndex) => (
             <p key={lineIndex}>
@@ -273,8 +258,6 @@ export function TypingTest() {
               ))}
             </p>
           ))}
-          <div>{score}</div>
-          <div>{mistakes}</div>
         </div>
       </article>
     </section>

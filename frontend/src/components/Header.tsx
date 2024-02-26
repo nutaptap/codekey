@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom"
+
 export function Header() {
   return (
     <header className="w-screen p-6 max-w-[1150px] flex items-center justify-between mx-auto">
-      <div className="flex items-center select-none cursor-pointer">
+      <Link to="/" className="flex items-center select-none cursor-pointer">
         <span className="text-3xl mr-[2px] text-[#76689a]">&lt;</span>
         <svg
           className="w-6 h-6 text-[#76689a]"
@@ -14,22 +16,26 @@ export function Header() {
           ></path>
         </svg>
         <span className="text-3xl  ml-[2px] text-[#76689a]">&gt;</span>
-        <span className="text-3xl pb-[6px] tracking-wide ml-2">codetype</span>
-      </div>
+        <span className="text-3xl pb-[6px] tracking-wide ml-2">codekey</span>
+      </Link>
       <nav className="flex">
-        <button className="flex items-center text-xs font-semibold tracking-widest rounded-xl border-2 border-[#76689a] bg-[#76689a] px-3 py-1 mr-6">
-          <svg
-            className="w-4 h-4 text-[#f1e2e4] mr-[2px]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 28 28"
-          >
-            <path
-              fill="currentColor"
-              d="m21.5669,12.7007l-4.0422,2.0211c-1.213.6064-2.1965,1.59-2.8029,2.8029l-2.0211,4.0421c-.2887.5775-1.1127.5775-1.4015,0l-2.0211-4.0421c-.6064-1.213-1.59-2.1965-2.8029-2.8029l-4.0422-2.0211c-.5775-.2887-.5775-1.1127,0-1.4015l4.0422-2.0211c1.213-.6065,2.1965-1.5901,2.8029-2.803l2.0211-4.0421c.2887-.5775,1.1127-.5775,1.4015,0l2.0211,4.0421c.6064,1.213,1.59,2.1965,2.8029,2.803l4.0422,2.0211c.5775.2887.5775,1.1127,0,1.4015Z"
-            />
-          </svg>
-          SCORES
-        </button>
+        <div>
+          <div className="scores flex items-center text-xs font-semibold tracking-widest rounded-2xl  bg-[#76689a] px-[2px] py-[2px] mr-6">
+            <button className="scores-button flex items-center text-xs font-semibold tracking-widest rounded-xl  bg-[#76689a] px-3 py-1">
+              <svg
+                className="w-4 h-4 text-[#f1e2e4] mr-[2px]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 28 28"
+              >
+                <path
+                  fill="currentColor"
+                  d="m21.5669,12.7007l-4.0422,2.0211c-1.213.6064-2.1965,1.59-2.8029,2.8029l-2.0211,4.0421c-.2887.5775-1.1127.5775-1.4015,0l-2.0211-4.0421c-.6064-1.213-1.59-2.1965-2.8029-2.8029l-4.0422-2.0211c-.5775-.2887-.5775-1.1127,0-1.4015l4.0422-2.0211c1.213-.6065,2.1965-1.5901,2.8029-2.803l2.0211-4.0421c.2887-.5775,1.1127-.5775,1.4015,0l2.0211,4.0421c.6064,1.213,1.59,2.1965,2.8029,2.803l4.0422,2.0211c.5775.2887.5775,1.1127,0,1.4015Z"
+                />
+              </svg>
+              SCORES
+            </button>
+          </div>
+        </div>
         <button className="text-xs font-semibold tracking-wider rounded-xl border-2 border-[#76689a] bg-[#2b2b2c] px-3 py-2 flex">
           <div className="w-2 h-2 bg-[#f1e2e4] rounded-full mr-2"></div>
           <div className="w-2 h-2 bg-[#76689a] rounded-full mr-2"></div>

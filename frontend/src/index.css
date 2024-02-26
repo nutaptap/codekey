@@ -8,6 +8,97 @@
 }
 
 @layer components {
+  .scores-button {
+    z-index: 20;
+  }
+  .scores {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .scores::before {
+    content: "";
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    background-color: #76689a;
+  }
+
+  .scores:hover::before {
+    animation: rotate 3s linear infinite;
+  }
+
+  .scores:hover {
+    box-shadow: 1px 1px 6px 6px #76689a1c;
+  }
+
+  @keyframes rotate {
+    0% {
+      background: conic-gradient(
+        #76689a,
+        #76689a,
+        #a293c6,
+        #76689a,
+        #76689a,
+        #a293c6,
+        #76689a
+      );
+      transform: rotate(0deg);
+    }
+    25% {
+      background: conic-gradient(
+        #76689a,
+        #76689a,
+        #bfb3db,
+        #76689a,
+        #76689a,
+        #bfb3db,
+        #76689a
+      );
+      transform: rotate(87.5deg); /* 25% of 350deg */
+    }
+    50% {
+      background: conic-gradient(
+        #76689a,
+        #76689a,
+        #dfd8f0,
+        #76689a,
+        #76689a,
+        #dfd8f0,
+        #76689a
+      );
+      transform: rotate(175deg); /* 50% of 350deg */
+    }
+    75% {
+      background: conic-gradient(
+        #76689a,
+        #76689a,
+        #bfb3db,
+        #76689a,
+        #76689a,
+        #bfb3db,
+        #76689a
+      );
+      transform: rotate(262.5deg); /* 75% of 350deg */
+    }
+    100% {
+      background: conic-gradient(
+        #76689a,
+        #76689a,
+        #a293c6,
+        #76689a,
+        #76689a,
+        #a293c6,
+        #76689a
+      );
+      transform: rotate(350deg);
+    }
+  }
+
   .caret,
   .reverse {
     position: relative;
