@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom"
 import { codeBlocks } from "../data/codeBlocks.json"
 import { TimeMenu } from "./TimeMenu"
 
+function getRandom() {
+  const maxLength = codeBlocks.length
+  const randomIndex = Math.floor(Math.random() * maxLength)
+  return codeBlocks[randomIndex]
+}
+
 export function TypingTest() {
   const navigate = useNavigate()
-  const getRandom = () => {
-    const maxLength = codeBlocks.length
-    const randomIndex = Math.floor(Math.random() * maxLength)
-    return codeBlocks[randomIndex]
-  }
-
   const [originalCode, setOriginalCode] = useState(getRandom())
   const initialTypedCode = originalCode.map(() => "")
   const [typedCode, setTypedCode] = useState(initialTypedCode)
@@ -128,14 +128,14 @@ export function TypingTest() {
         return
       }
 
-      const char = e.key
+      if (typedCode[currentLine].length < originalCode[currentLine].length) {
+        setTypedCode((prevTypedCode) => {
+          const updatedTypedCode = [...prevTypedCode]
+          updatedTypedCode[currentLine] += e.key
 
-      setTypedCode((prevTypedCode) => {
-        const updatedTypedCode = [...prevTypedCode]
-        updatedTypedCode[currentLine] += char
-
-        return updatedTypedCode
-      })
+          return updatedTypedCode
+        })
+      }
 
       if (start === false) {
         setStart(true)
@@ -168,8 +168,8 @@ export function TypingTest() {
     initialTypedCode,
     mistakes,
     score,
-    completeCodeBlock,
     start,
+    completeCodeBlock,
   ])
 
   useEffect(() => {
