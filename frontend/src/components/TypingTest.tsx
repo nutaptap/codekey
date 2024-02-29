@@ -208,10 +208,11 @@ export function TypingTest() {
       }, 0)
       const totalMistakes = thislMistakes + mistakes
 
-      navigate("/result", { state: { totalScore, totalMistakes } })
+      navigate("/result", { state: { totalScore, totalMistakes, maxTime } })
     }
   }, [
     time,
+    maxTime,
     navigate,
     completeCodeBlock,
     score,
