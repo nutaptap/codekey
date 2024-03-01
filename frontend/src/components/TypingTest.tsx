@@ -68,6 +68,11 @@ export function TypingTest() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        location.reload()
+        return
+      }
+
       const specialKeys = [
         "Shift",
         "CapsLock",
@@ -170,6 +175,7 @@ export function TypingTest() {
     score,
     start,
     completeCodeBlock,
+    navigate,
   ])
 
   useEffect(() => {
@@ -261,6 +267,15 @@ export function TypingTest() {
           ))}
         </div>
       </article>
+      {start === true && (
+        <div className="text-[#655d6d] text-center">
+          Press{" "}
+          <span className="text-[#2b2b2c] mr-1 bg-[#655d6d] rounded-lg p-1">
+            Esc
+          </span>{" "}
+          to reset
+        </div>
+      )}
     </section>
   )
 }
