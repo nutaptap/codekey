@@ -1,0 +1,13 @@
+.midnight {
+  --bg-color: #2b2b2c;
+  --main-color: #72689a;
+  --main-gradient-1: #9d93c6;
+  --main-gradient-2: #beb3db;
+  --main-gradient-3: #dcd8f0;
+  --sub-color: #d8a0ad;
+  --sub-alt-color: #c08794;
+  --neutral-color: #4d4852;
+  --neutral-alt-color: #696171;
+  --text-color: #f1e2e4;
+  --error-color: #c0472c;
+}

@@ -7,7 +7,7 @@ import { Result } from "./components/Result"
 function App() {
   return (
     <Router>
-      <div className="font-cascadia-mono text-[#f1e2e4] bg-[#2b2b2c] h-screen min-h-screen flex flex-col items-center">
+      <div className="font-cascadia-mono text-text bg-background h-screen min-h-screen flex flex-col items-center midnight">
         <Header />
         <Routes>
           <Route path="/" element={<TypingTest />} />

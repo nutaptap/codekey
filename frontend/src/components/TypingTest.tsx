@@ -234,9 +234,9 @@ export function TypingTest() {
           <TimeMenu handleTime={handleTime} time={time} />
         </div>
       ) : (
-        <div className="text-center my-10 text-lg text-[#76689a]">{time}</div>
+        <div className="text-center my-2 text-lg text-main">{time}</div>
       )}
-      <article className="relative my-16 text-xl">
+      <article className="relative my-8 text-xl">
         <div className="mb-8">
           {originalCode.map((line, lineIndex) => (
             <p key={lineIndex}>
@@ -246,9 +246,9 @@ export function TypingTest() {
                   className={[
                     isTyped(lineIndex, charIndex)
                       ? isCorrect(lineIndex, charIndex)
-                        ? "text-[#f1e2e4]"
-                        : "text-[#d44729]"
-                      : "text-[#d8a0a6]",
+                        ? "text-text"
+                        : "text-error"
+                      : "text-sub",
                     currentLine === lineIndex &&
                     typedCode[currentLine].length === charIndex + 1
                       ? "caret"
@@ -268,9 +268,9 @@ export function TypingTest() {
         </div>
       </article>
       {start === true && (
-        <div className="text-[#655d6d] text-center">
+        <div className="text-neutralAlt text-center text-xs">
           Press{" "}
-          <span className="text-[#2b2b2c] mr-1 bg-[#655d6d] rounded-lg p-1">
+          <span className="text-background mr-1 bg-neutralAlt rounded-md p-[2px] px-2">
             Esc
           </span>{" "}
           to reset

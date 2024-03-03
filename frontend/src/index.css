@@ -25,7 +25,7 @@
     position: absolute;
     width: 95px;
     height: 95px;
-    background-color: #76689a;
+    background-color: var(--main-color);
   }
 
   .scores:hover::before {
@@ -39,61 +39,61 @@
   @keyframes rotate {
     0% {
       background: conic-gradient(
-        #76689a,
-        #76689a,
-        #a293c6,
-        #76689a,
-        #76689a,
-        #a293c6,
-        #76689a
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-1),
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-1),
+        var(--main-color)
       );
       transform: rotate(0deg);
     }
     25% {
       background: conic-gradient(
-        #76689a,
-        #76689a,
-        #bfb3db,
-        #76689a,
-        #76689a,
-        #bfb3db,
-        #76689a
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-2),
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-2),
+        var(--main-color)
       );
       transform: rotate(87.5deg); /* 25% of 350deg */
     }
     50% {
       background: conic-gradient(
-        #76689a,
-        #76689a,
-        #dfd8f0,
-        #76689a,
-        #76689a,
-        #dfd8f0,
-        #76689a
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-3),
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-3),
+        var(--main-color)
       );
       transform: rotate(175deg); /* 50% of 350deg */
     }
     75% {
       background: conic-gradient(
-        #76689a,
-        #76689a,
-        #bfb3db,
-        #76689a,
-        #76689a,
-        #bfb3db,
-        #76689a
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-2),
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-2),
+        var(--main-color)
       );
       transform: rotate(262.5deg); /* 75% of 350deg */
     }
     100% {
       background: conic-gradient(
-        #76689a,
-        #76689a,
-        #a293c6,
-        #76689a,
-        #76689a,
-        #a293c6,
-        #76689a
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-1),
+        var(--main-color),
+        var(--main-color),
+        var(--main-gradient-1),
+        var(--main-color)
       );
       transform: rotate(350deg);
     }
@@ -107,7 +107,7 @@
   .caret::after {
     position: absolute;
     content: "";
-    border-right: #f1e2e4 2px solid;
+    border-right: var(--text-color) 2px solid;
     height: 20px;
     top: 50%;
     transform: translateY(-50%);
@@ -118,7 +118,7 @@
   .reverse::before {
     position: absolute;
     content: "";
-    border-right: #f1e2e4 2px solid;
+    border-right: var(--text-color) 2px solid;
     height: 20px;
     top: 50%;
     transform: translateY(-50%);

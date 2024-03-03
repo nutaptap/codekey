@@ -2,11 +2,11 @@ export function Footer() {
   return (
     <footer className="w-screen p-6 max-w-[1150px] select-none mt-auto">
       <nav className="flex items-center justify-between">
-        <ul className="flex text-sm tracking-wider font-semibold">
+        <ul className="flex text-sm tracking-wider font-semibold text-gradient1">
           <li className="mr-10 cursor-pointer">
-            <a className="flex">
+            <a className="flex hover:text-text transition-all duration-200">
               <svg
-                className="w-[16px] h-[16px] text-[#76689a] mt-[3px] mr-[1.5px]"
+                className="w-[16px] h-[16px] mt-[3px] mr-[1.5px]"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 100 125"
               >
@@ -20,9 +20,9 @@ export function Footer() {
             </a>
           </li>
           <li className="mr-8 cursor-pointer">
-            <a className="flex">
+            <a className="flex hover:text-text transition-all duration-200">
               <svg
-                className="w-[13px] h-[13px] text-[#76689a] mr-2 mt-[4.5px]"
+                className="w-[13px] h-[13px] mr-2 mt-[4.5px]"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 0.615 0.55"
               >
@@ -36,12 +36,12 @@ export function Footer() {
           </li>
           <li className="cursor-pointer">
             <a
-              className="flex"
+              className="flex hover:text-text transition-all duration-200"
               target="_blank"
               href="https://github.com/nutaptap/codetype"
             >
               <svg
-                className="w-[26px] h-[26px] text-[#76689a] mr-[3px]"
+                className="w-[26px] h-[26px] mr-[3px]"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 100 125"
               >

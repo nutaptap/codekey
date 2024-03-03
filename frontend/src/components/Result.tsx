@@ -49,14 +49,14 @@ export function Result() {
   return (
     <main className="flex space-x-20 items-center text-md tracking-widest text-center my-auto">
       <section className="flex flex-col">
-        <span className="text-[#d8a0a6]">wpm</span>
+        <span className="text-sub">wpm</span>
         <span className="text-3xl">
           {Math.round(calculateWPM(totalScore, maxTime))}
         </span>
       </section>
       <section className="flex items-center space-x-5">
         <div className="flex flex-col">
-          <span className="text-[#d8a0a6]">acc</span>
+          <span className="text-sub">acc</span>
           <span className="text-3xl">{accurate}%</span>
         </div>
         <span className="w-20">
@@ -64,7 +64,7 @@ export function Result() {
         </span>
       </section>
       <section className="flex flex-col items-center">
-        <span className="text-[#d8a0a6]">time</span>
+        <span className="text-sub">time</span>
         <span className="text-3xl">{secondsToMinutes(maxTime)}</span>
       </section>
     </main>
