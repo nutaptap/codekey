@@ -1,13 +1,97 @@
+.gelato {
+  --bg-color: #ffffff;
+  --main-color: #7c9ce0;
+  --main-gradient-1: #acc8ee;
+  --main-gradient-2: #bbc7e9;
+  --main-gradient-3: #d1dae6;
+  --sub-color: #6f7a94;
+  --sub-alt-color: #8c9dc3;
+  --neutral-color: #e5ecea;
+  --neutral-alt-color: #d3dedb;
+  --text-color: #212b43;
+  --error-color: #f19dac;
+}
+
+.lilac-mist {
+  --bg-color: #ada6c2;
+  --main-color: #e9bad8;
+  --main-gradient-1: #f1c8e2;
+  --main-gradient-2: #f3dfe9;
+  --main-gradient-3: #ffffff;
+  --sub-color: #8475b6;
+  --sub-alt-color: #a092ce;
+  --neutral-color: #ccbfd4;
+  --neutral-alt-color: #d7cfdd;
+  --text-color: #2f2a41;
+  --error-color: #ca4765;
+}
+
+.lunar-treat {
+  --bg-color: #2a273f;
+  --main-color: #b090d8;
+  --main-gradient-1: #c3aae3;
+  --main-gradient-2: #d6c7e9;
+  --main-gradient-3: #eae6ef;
+  --sub-color: #f8cb8c;
+  --sub-alt-color: #88bdc7;
+  --neutral-color: #a28fad;
+  --neutral-alt-color: #b5a5c2;
+  --text-color: #edebf9;
+  --error-color: #eb6f92;
+}
+
 .midnight {
   --bg-color: #2b2b2c;
   --main-color: #72689a;
   --main-gradient-1: #9d93c6;
-  --main-gradient-2: #beb3db;
-  --main-gradient-3: #dcd8f0;
+  --main-gradient-2: #c6bddf;
+  --main-gradient-3: #e9e7f3;
   --sub-color: #d8a0ad;
   --sub-alt-color: #c08794;
   --neutral-color: #4d4852;
   --neutral-alt-color: #696171;
   --text-color: #f1e2e4;
   --error-color: #c0472c;
+}
+
+.mossery {
+  --bg-color: #2c3333;
+  --main-color: #799f81;
+  --main-gradient-1: #99b79f;
+  --main-gradient-2: #bdd1c1;
+  --main-gradient-3: #ebf2ed;
+  --sub-color: #8bcbb7;
+  --sub-alt-color: #7ac0a7;
+  --neutral-color: #4d5252;
+  --neutral-alt-color: #5c6060;
+  --text-color: #f3e4df;
+  --error-color: #d66262;
+}
+
+.spellbound {
+  --bg-color: #f4edec;
+  --main-color: #d4c3c2;
+  --main-gradient-1: #e097bf;
+  --main-gradient-2: #c79ea9;
+  --main-gradient-3: #cbafb0;
+  --sub-color: #93b3a6;
+  --sub-alt-color: #e5afcd;
+  --neutral-color: #e9dfdf;
+  --neutral-alt-color: #ded1d1;
+  --text-color: #56786a;
+  --error-color: #b47158;
+}
+
+.wyvern {
+  --bg-color: #efe1ec;
+  --main-color: #905bd6;
+  --main-gradient-1: #a677e3;
+  --main-gradient-2: #bd99ec;
+  --main-gradient-3: #decdf3;
+  --sub-color: #b69cc4;
+  --sub-alt-color: #a98db8;
+  --neutral-color: #c7ccca;
+  --neutral-alt-color: #d8dedc;
+  --text-color: #212b43;
+  --error-color: #df7d88;
 }

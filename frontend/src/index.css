@@ -32,10 +32,6 @@
     animation: rotate 3s linear infinite;
   }
 
-  .scores:hover {
-    box-shadow: 1px 1px 6px 6px #76689a1c;
-  }
-
   @keyframes rotate {
     0% {
       background: conic-gradient(

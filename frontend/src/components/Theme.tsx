@@ -1,6 +1,18 @@
 import { useEffect } from "react"
 
-export function Theme({ toggleModal }: { toggleModal: () => void }) {
+interface ThemeProps {
+  toggleModal: () => void
+  switchTheme: (theme: string) => void
+}
+
+export function Theme({ toggleModal, switchTheme }: ThemeProps) {
+  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+    const theme = (e.currentTarget as HTMLButtonElement).getAttribute(
+      "data-theme"
+    )
+    theme && switchTheme(theme)
+  }
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const modal = document.getElementById("modal")
@@ -22,18 +34,54 @@ export function Theme({ toggleModal }: { toggleModal: () => void }) {
         id="modal"
         className="w-[200px] h-[400px] bg-main rounded-2xl absolute z-20 flex flex-col space-y-2 items-center justify-center p-8"
       >
-        <button className="rounded-xl p-1 border border-text">Midnight</button>
-        <button className="rounded-xl p-1 border border-text">Wyvern</button>
-        <button className="rounded-xl p-1 border border-text">
+        <button
+          onClick={handleClick}
+          data-theme="gelato"
+          className="rounded-xl p-1 border border-text"
+        >
+          Gelato
+        </button>
+        <button
+          onClick={handleClick}
+          data-theme="lilac-mist"
+          className="rounded-xl p-1 border border-text"
+        >
           Lilac Mist
         </button>
-        <button className="rounded-xl p-1 border border-text">Mossery</button>
-        <button className="rounded-xl p-1 border border-text">Gelato</button>
-        <button className="rounded-xl p-1 border border-text">
+        <button
+          onClick={handleClick}
+          data-theme="lunar-treat"
+          className="rounded-xl p-1 border border-text"
+        >
           Lunar Treat
         </button>
-        <button className="rounded-xl p-1 border border-text">
+        <button
+          onClick={handleClick}
+          data-theme="midnight"
+          className="rounded-xl p-1 border border-text"
+        >
+          Midnight
+        </button>
+        <button
+          onClick={handleClick}
+          data-theme="mossery"
+          className="rounded-xl p-1 border border-text"
+        >
+          Mossery
+        </button>
+        <button
+          onClick={handleClick}
+          data-theme="spellbound"
+          className="rounded-xl p-1 border border-text"
+        >
           Spellbound
+        </button>
+        <button
+          onClick={handleClick}
+          data-theme="wyvern"
+          className="rounded-xl p-1 border border-text"
+        >
+          Wyvern
         </button>
       </article>
     </div>

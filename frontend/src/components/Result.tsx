@@ -3,11 +3,14 @@ import { calculateWPM } from "../utils/calculateWPM"
 import { calculateAccuracy } from "../utils/calculateAccuracy"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
 import { Doughnut } from "react-chartjs-2"
+import { useEffect, useState } from "react"
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 export function Result() {
   const { state } = useLocation()
+  const [subColor, setSubColor] = useState("")
+  const [errorColor, setErrorColor] = useState("")
   const totalScore = state && state.totalScore ? state.totalScore : 0
   const totalMistakes = state && state.totalMistakes ? state.totalMistakes : 0
   const maxTime = state && state.maxTime ? state.maxTime : 0
@@ -24,14 +27,42 @@ export function Result() {
     return minutes[seconds]
   }
 
+  useEffect(() => {
+    const gelatoRoot = document.querySelector(".gelato")
+    const lilacMistRoot = document.querySelector(".lilac-mist")
+    const lunarTreatRoot = document.querySelector(".lunar-treat")
+    const midnightRoot = document.querySelector(".midnight")
+    const mosseryRoot = document.querySelector(".mossery")
+    const spellboundRoot = document.querySelector(".spellbound")
+    const wyvernRoot = document.querySelector(".wyvern")
+
+    const root =
+      gelatoRoot ||
+      lilacMistRoot ||
+      lunarTreatRoot ||
+      midnightRoot ||
+      mosseryRoot ||
+      spellboundRoot ||
+      wyvernRoot
+
+    if (root) {
+      const styles = getComputedStyle(root)
+      const getSubColor = styles.getPropertyValue("--sub-color")
+      const getErrorColor = styles.getPropertyValue("--error-color")
+
+      setSubColor(getSubColor)
+      setErrorColor(getErrorColor)
+    }
+  }, [])
+
   const data = {
     labels: ["Accurate", "Error"],
     datasets: [
       {
         label: "Accuracy",
         data: [accurate, wrong],
-        backgroundColor: ["#d8a0a6", "#d44729"],
-        borderColor: ["#d8a0a6", "#d44729"],
+        backgroundColor: [subColor, errorColor],
+        borderColor: [subColor, errorColor],
         circumference: 180,
         rotation: 270,
       },
