@@ -20,7 +20,7 @@ function App() {
       <div
         className={`font-cascadia-mono text-text bg-background h-screen min-h-screen flex flex-col items-center ${theme}`}
       >
-        <Header switchTheme={switchTheme} />
+        <Header switchTheme={switchTheme} theme={theme} />
         <Routes>
           <Route path="/" element={<TypingTest />} />
           <Route path="/result" element={<Result />} />

@@ -2,11 +2,12 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Theme } from "./Theme"
 
-export function Header({
-  switchTheme,
-}: {
+interface HeaderProps {
   switchTheme: (theme: string) => void
-}) {
+  theme: string
+}
+
+export function Header({ switchTheme, theme }: HeaderProps) {
   const [modalOpen, setModalOpen] = useState(false)
   function toggleModal() {
     setModalOpen(!modalOpen)
@@ -67,7 +68,11 @@ export function Header({
         </nav>
       </header>
       {modalOpen && (
-        <Theme switchTheme={switchTheme} toggleModal={toggleModal} />
+        <Theme
+          switchTheme={switchTheme}
+          toggleModal={toggleModal}
+          theme={theme}
+        />
       )}
     </>
   )
