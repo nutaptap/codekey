@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer"
 import { TypingTest } from "./components/TypingTest"
 import { Result } from "./components/Result"
 import { useState } from "react"
+import { About } from "./components/About"
 
 function App() {
   const [theme, setTheme] = useState(
@@ -18,12 +19,13 @@ function App() {
   return (
     <Router>
       <div
-        className={`font-cascadia-mono text-text bg-background h-screen min-h-screen flex flex-col items-center ${theme}`}
+        className={`font-cascadia-mono text-text bg-background w-screen min-w-screen h-screen min-h-screen flex flex-col items-center ${theme}`}
       >
         <Header switchTheme={switchTheme} theme={theme} />
         <Routes>
           <Route path="/" element={<TypingTest />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
       </div>
