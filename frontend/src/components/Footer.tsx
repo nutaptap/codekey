@@ -1,6 +1,14 @@
+import { useState } from "react"
+import { Contact } from "./Contact"
+
 export function Footer() {
+  const [modalOpen, setModalOpen] = useState(false)
+  function toggleModal() {
+    setModalOpen(!modalOpen)
+  }
+
   return (
-    <footer className="w-screen p-6 max-w-[1150px] select-none mt-auto">
+    <footer className=" w-screen p-6 max-w-[1150px] select-none mt-auto">
       <nav className="flex items-center justify-between">
         <ul className="flex text-sm tracking-wider font-semibold text-gradient1">
           <li className="mr-10 cursor-pointer">
@@ -20,7 +28,10 @@ export function Footer() {
             </a>
           </li>
           <li className="mr-8 cursor-pointer">
-            <a className="flex hover:text-text transition-all duration-200">
+            <a
+              onClick={toggleModal}
+              className="flex hover:text-text transition-all duration-200"
+            >
               <svg
                 className="w-[13px] h-[13px] mr-2 mt-[4.5px]"
                 xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +68,7 @@ export function Footer() {
           </li>
         </ul>
       </nav>
+      {modalOpen && <Contact toggleModal={toggleModal} />}
     </footer>
   )
 }
