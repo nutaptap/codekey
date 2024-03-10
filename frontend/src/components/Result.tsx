@@ -4,6 +4,7 @@ import { calculateAccuracy } from "../utils/calculateAccuracy"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
 import { Doughnut } from "react-chartjs-2"
 import { useEffect, useState } from "react"
+import { Score } from "./Score"
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -77,27 +78,43 @@ export function Result() {
     },
   }
 
+  const [modalOpen, setModalOpen] = useState(false)
+  function toggleModal() {
+    setModalOpen(!modalOpen)
+  }
+
   return (
-    <main className="flex space-x-20 items-center text-md tracking-widest text-center my-auto">
-      <section className="flex flex-col">
-        <span className="text-sub">wpm</span>
-        <span className="text-3xl">
-          {Math.round(calculateWPM(totalScore, maxTime))}
-        </span>
+    <main className="my-auto flex flex-col items-center select-none">
+      <article className="flex space-x-20 items-center text-md tracking-widest text-center">
+        <section className="flex flex-col">
+          <span className="text-sub">wpm</span>
+          <span className="text-3xl">
+            {Math.round(calculateWPM(totalScore, maxTime))}
+          </span>
+        </section>
+        <section className="flex items-center space-x-5">
+          <div className="flex flex-col">
+            <span className="text-sub">acc</span>
+            <span className="text-3xl">{accurate}%</span>
+          </div>
+          <span className="w-20">
+            <Doughnut data={data} options={options} />
+          </span>
+        </section>
+        <section className="flex flex-col items-center">
+          <span className="text-sub">time</span>
+          <span className="text-3xl">{secondsToMinutes(maxTime)}</span>
+        </section>
+      </article>
+      <section className="mt-10">
+        <button
+          onClick={toggleModal}
+          className="text-xl bg-gradient1 p-1 px-4 rounded-xl hover:bg-gradient2 duration-200"
+        >
+          save score
+        </button>
       </section>
-      <section className="flex items-center space-x-5">
-        <div className="flex flex-col">
-          <span className="text-sub">acc</span>
-          <span className="text-3xl">{accurate}%</span>
-        </div>
-        <span className="w-20">
-          <Doughnut data={data} options={options} />
-        </span>
-      </section>
-      <section className="flex flex-col items-center">
-        <span className="text-sub">time</span>
-        <span className="text-3xl">{secondsToMinutes(maxTime)}</span>
-      </section>
+      {modalOpen && <Score toggleModal={toggleModal} />}
     </main>
   )
 }
