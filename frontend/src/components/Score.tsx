@@ -29,7 +29,7 @@ export function Score({ toggleModal }: ScoreProps) {
           type="text"
           placeholder="Name"
           required
-          className="p-2 bg-gradient2 w-40 rounded-md"
+          className="p-2 bg-neutral w-40 rounded-md"
         />
 
         <button
