@@ -88,6 +88,7 @@ export function TypingTest() {
         "ArrowDown",
         "Alt",
         "AltGraph",
+        "ContextMenu",
       ]
 
       if (
@@ -134,12 +135,19 @@ export function TypingTest() {
       }
 
       if (typedCode[currentLine].length < originalCode[currentLine].length) {
-        setTypedCode((prevTypedCode) => {
-          const updatedTypedCode = [...prevTypedCode]
-          updatedTypedCode[currentLine] += e.key
-
-          return updatedTypedCode
-        })
+        if (e.key === "Dead") {
+          setTypedCode((prevTypedCode) => {
+            const updatedTypedCode = [...prevTypedCode]
+            updatedTypedCode[currentLine] += "ç"
+            return updatedTypedCode
+          })
+        } else {
+          setTypedCode((prevTypedCode) => {
+            const updatedTypedCode = [...prevTypedCode]
+            updatedTypedCode[currentLine] += e.key
+            return updatedTypedCode
+          })
+        }
       }
 
       if (start === false) {
