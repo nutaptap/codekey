@@ -2,8 +2,8 @@
   --bg-color: #ffffff;
   --main-color: #7c9ce0;
   --main-gradient-1: #acc8ee;
-  --main-gradient-2: #bbc7e9;
-  --main-gradient-3: #d1dae6;
+  --main-gradient-2: #ced5e9;
+  --main-gradient-3: #ebeff3;
   --sub-color: #6f7a94;
   --sub-alt-color: #8c9dc3;
   --neutral-color: #e5ecea;
@@ -85,9 +85,9 @@
 .wyvern {
   --bg-color: #efe1ec;
   --main-color: #905bd6;
-  --main-gradient-1: #a677e3;
-  --main-gradient-2: #bd99ec;
-  --main-gradient-3: #decdf3;
+  --main-gradient-1: #b38ee3;
+  --main-gradient-2: #bfa8e1;
+  --main-gradient-3: #dacfeb;
   --sub-color: #b69cc4;
   --sub-alt-color: #a98db8;
   --neutral-color: #c7ccca;
