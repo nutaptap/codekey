@@ -1,6 +1,6 @@
 export function About() {
   return (
-    <main className="w-screen bg-background flex justify-center mt-8">
+    <main className="w-screen bg-background flex justify-center mt-8 overflow-hidden">
       <div className="p-6 max-w-[700px]">
         <h1 className="text-sub text-2xl mb-6">about</h1>
         <section className="mb-16">
