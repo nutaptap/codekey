@@ -8,6 +8,10 @@
 }
 
 @layer components {
+  .custom-scrollbar {
+    scrollbar-color: var(--main-color) var(--bg-color);
+  }
+
   .scores-button {
     z-index: 20;
   }

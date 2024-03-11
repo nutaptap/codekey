@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Theme } from "./Theme"
+import { Leaderboard } from "./Leaderboard"
 
 interface HeaderProps {
   switchTheme: (theme: string) => void
@@ -8,9 +9,14 @@ interface HeaderProps {
 }
 
 export function Header({ switchTheme, theme }: HeaderProps) {
-  const [modalOpen, setModalOpen] = useState(false)
-  function toggleModal() {
-    setModalOpen(!modalOpen)
+  const [themeModalOpen, setThemeModalOpen] = useState(false)
+  function toggleThemeModal() {
+    setThemeModalOpen(!themeModalOpen)
+  }
+
+  const [leaderboardModalOpen, setLeaderboardModalOpen] = useState(false)
+  function toggleLeaderboardModal() {
+    setLeaderboardModalOpen(!leaderboardModalOpen)
   }
   return (
     <>
@@ -35,7 +41,10 @@ export function Header({ switchTheme, theme }: HeaderProps) {
         <nav className="flex">
           <div>
             <div className="scores flex items-center text-xs font-semibold tracking-widest rounded-2xl  bg-main px-[2px] py-[2px] mr-6">
-              <button className="scores-button flex items-center text-xs font-semibold tracking-widest rounded-xl  bg-main px-3 py-1">
+              <button
+                onClick={toggleLeaderboardModal}
+                className="scores-button flex items-center text-xs font-semibold tracking-widest rounded-xl  bg-main px-3 py-1"
+              >
                 <svg
                   className="w-4 h-4 text-text mr-[2px]"
                   xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +60,7 @@ export function Header({ switchTheme, theme }: HeaderProps) {
             </div>
           </div>
           <button
-            onClick={toggleModal}
+            onClick={toggleThemeModal}
             className="text-sub hover:text-text transition-all duration-200"
           >
             <svg
@@ -67,12 +76,15 @@ export function Header({ switchTheme, theme }: HeaderProps) {
           </button>
         </nav>
       </header>
-      {modalOpen && (
+      {themeModalOpen && (
         <Theme
           switchTheme={switchTheme}
-          toggleModal={toggleModal}
+          toggleModal={toggleThemeModal}
           theme={theme}
         />
+      )}
+      {leaderboardModalOpen && (
+        <Leaderboard toggleModal={toggleLeaderboardModal} />
       )}
     </>
   )
