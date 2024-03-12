@@ -1,10 +1,17 @@
 {
     "codeBlocks": [
       ["function greet(name = 'friend') {", "console.log('Hello, ' + name + '!')", "}", "greet()"],
-      ["let array1 = [1, 2, 3]", "let array2 = [4, 5, 6]", "let combinedArray = [...array1, ...array2]", "console.log(combinedArray)"],
+      ["const array1 = [1, 2, 3]", "const array2 = [4, 5, 6]", "const combinedArray = [...array1, ...array2]", "console.log(combinedArray)"],
       ["function sum(...numbers) {", "return numbers.reduce((total, num) => total + num, 0)", "}", "console.log(sum(1, 2, 3, 4, 5))"],
       ["try {", "throwError())", "} catch (error) {", "console.error(error.message)", "}"],
-      ["async function runAsync() {", "let result = await asyncFunction()", "console.log(result)", "}"],
-      ["class Car {", "constructor(brand) {", "this.brand = brand", "}", "presentCar() {", "return 'I have a ' + this.brand", "}"]
+      ["async function runAsync() {", "const result = await asyncFunction()", "console.log(result)", "}"],
+      ["class Car {", "constructor(brand) {", "this.brand = brand", "}", "presentCar() {", "return 'I have a ' + this.brand", "}"],
+      ["function calcProduct(...numbers) {", "return numbers.reduce((acc, val) => acc * val, 1)", "}", "console.log(calcProduct(1, 2, 3, 4, 5))"],
+      ["async function fetchData() {", "const response = await fetch('https://cutecats.com/cats')", "const data = await response.json()", "console.log(data)", "}"],
+      ["const numbers = [1, 2, 3, 4, 5]", "const doubledNumbers = numbers.map(num => num * 2)", "console.log(doubledNumbers)"],
+      ["const fruits = ['apple', 'banana', 'orange']", "for (let i = 0; i < fruits.length; i++) {", "console.log(fruits[i])", "}"],
+      ["const numbers = [1, 2, 3, 4, 5]", "const evenNumbers = numbers.filter(num => num % 2 === 0)", "console.log(evenNumbers)"],
+      ["let count = 0", "while (count < 5) {", "console.log(count)", "count++", "}"],
+      ["setTimeout(() => {", "console.log('Timer started')", "}, 1000)", "console.log('And done!')"]
     ]
   }
