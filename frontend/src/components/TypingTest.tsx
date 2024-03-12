@@ -29,9 +29,12 @@ export function TypingTest() {
   }
 
   function isTyped(arrayIndex: number, charIndex: number) {
-    const char = typedCode[arrayIndex]?.[charIndex]
-
-    return char === undefined ? false : true
+    const line = typedCode[arrayIndex]
+    if (line === undefined) {
+      return false
+    }
+    const char = line[charIndex]
+    return char !== undefined
   }
 
   const completeCodeBlock = useCallback(() => {
@@ -236,7 +239,7 @@ export function TypingTest() {
   ])
 
   return (
-    <section>
+    <main className="my-auto">
       {start === false ? (
         <div className="flex justify-center">
           <TimeMenu handleTime={handleTime} time={time} />
@@ -244,7 +247,7 @@ export function TypingTest() {
       ) : (
         <div className="text-center my-2 text-lg text-main">{time}</div>
       )}
-      <article className="relative my-8 text-xl">
+      <article className="relative my-14 text-xl">
         <div className="mb-8">
           {originalCode.map((line, lineIndex) => (
             <p key={lineIndex}>
@@ -284,6 +287,6 @@ export function TypingTest() {
           to reset
         </div>
       )}
-    </section>
+    </main>
   )
 }
