@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
     name: req.body.name,
     wpm: req.body.wpm,
     acc: req.body.acc,
+    time: req.body.time,
   })
 
   try {
