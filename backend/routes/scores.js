@@ -4,8 +4,16 @@ const Score = require("../models/score")
 
 router.get("/", async (req, res) => {
   try {
-    const scores = await Score.find().sort({ wpm: -1 }).limit(10)
-    res.json(scores)
+    const scores = await Score.find()
+
+    const rankedScores = scores.map((sccore) => ({
+      ...score,
+      ranking: score.wpm - (100 - score.acc),
+    }))
+
+    rankedScores.sort((a, b) => b.ranking - a.ranking)
+
+    res.json(rankedScores)
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
