@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
   try {
     const scores = await Score.find()
 
-    const rankedScores = scores.map((sccore) => ({
+    const rankedScores = scores.map((score) => ({
       ...score,
       ranking: score.wpm - (100 - score.acc),
     }))
