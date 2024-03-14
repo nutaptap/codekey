@@ -5,6 +5,7 @@ import { TypingTest } from "./components/TypingTest"
 import { Result } from "./components/Result"
 import { useState } from "react"
 import { About } from "./components/About"
+import { Saved } from "./components/Saved"
 
 function App() {
   const [theme, setTheme] = useState(
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<TypingTest />} />
           <Route path="/result" element={<Result />} />
           <Route path="/about" element={<About />} />
+          <Route path="/saved" element={<Saved />} />
         </Routes>
         <Footer />
       </div>

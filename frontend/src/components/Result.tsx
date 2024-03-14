@@ -114,7 +114,16 @@ export function Result() {
           save score
         </button>
       </section>
-      {modalOpen && <Score toggleModal={toggleModal} />}
+      {modalOpen && (
+        <Score
+          toggleModal={toggleModal}
+          score={{
+            wpm: Math.round(calculateWPM(totalScore, maxTime)),
+            acc: accurate,
+            time: secondsToMinutes(maxTime),
+          }}
+        />
+      )}
     </main>
   )
 }
