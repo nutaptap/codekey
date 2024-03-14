@@ -1,7 +1,16 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 interface LeaderboardProps {
   toggleModal: () => void
+}
+
+interface Score {
+  _id: string
+  name: string
+  wpm: number
+  acc: number
+  time: string
+  date: string
 }
 
 export function Leaderboard({ toggleModal }: LeaderboardProps) {
@@ -20,14 +29,42 @@ export function Leaderboard({ toggleModal }: LeaderboardProps) {
     }
   }, [toggleModal])
 
+  const [scores, setScores] = useState<Score[]>([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://codekey.cyclic.app/scores")
+        if (!response.ok) {
+          throw new Error("Failed to fetch scores")
+        }
+        const data = await response.json()
+        setScores(data)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  function formatDate(dateString: string): string {
+    const date = new Date(dateString)
+    const day = date.getDate().toString().padStart(2, "0")
+    const month = (date.getMonth() + 1).toString().padStart(2, "0")
+    const year = date.getFullYear()
+
+    return `${day}/${month}/${year}`
+  }
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-60 z-20 w-screen backdrop-filter backdrop-blur-[1px] select-none">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-60 z-20 w-screen backdrop-filter backdrop-blur-[1px] ">
       <main id="modal" className="absolute z-20 flex flex-col items-end">
         <div className="bg-background rounded-lg p-6 pt-10 text-lg text-sub w-[590px] h-[325px] overflow-hidden">
           <div className="rounded-lg overflow-auto max-h-[250px] custom-scrollbar flex justify-center">
-            <table className="text-left mr-2">
+            <table className="text-left mr-2 text-sm">
               <thead>
-                <tr className="text-neutral text-sm">
+                <tr className="text-neutral text-xs">
                   <th className="px-4 py-2">#</th>
                   <th className="px-4 py-2">name</th>
                   <th className="px-4 py-2">wpm</th>
@@ -37,48 +74,44 @@ export function Leaderboard({ toggleModal }: LeaderboardProps) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="px-4 py-2 bg-neutral rounded-l-lg">1</td>
-                  <td className="px-4 py-2 bg-neutral">Joe</td>
-                  <td className="px-4 py-2 bg-neutral">65</td>
-                  <td className="px-4 py-2 bg-neutral">98%</td>
-                  <td className="px-4 py-2 bg-neutral">00:30</td>
-                  <td className="px-4 py-2 bg-neutral rounded-r-lg">
-                    2024/03/01
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">2</td>
-                  <td className="px-4 py-2">Steph</td>
-                  <td className="px-4 py-2">72</td>
-                  <td className="px-4 py-2">95%</td>
-                  <td className="px-4 py-2">01:00</td>
-                  <td className="px-4 py-2">2024/03/02</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">3</td>
-                  <td className="px-4 py-2">Rona</td>
-                  <td className="px-4 py-2">68</td>
-                  <td className="px-4 py-2">97%</td>
-                  <td className="px-4 py-2">00:15</td>
-                  <td className="px-4 py-2">2024/03/03</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">4</td>
-                  <td className="px-4 py-2">Kathi</td>
-                  <td className="px-4 py-2">70</td>
-                  <td className="px-4 py-2">96%</td>
-                  <td className="px-4 py-2">02:00</td>
-                  <td className="px-4 py-2">2024/03/04</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">5</td>
-                  <td className="px-4 py-2">Eris</td>
-                  <td className="px-4 py-2">03</td>
-                  <td className="px-4 py-2">0%</td>
-                  <td className="px-4 py-2">00:15</td>
-                  <td className="px-4 py-2">2024/03/05</td>
-                </tr>
+                {scores.map((score, index) => (
+                  <tr key={score._id}>
+                    <td
+                      className={`px-4 py-2 ${
+                        index === 0 ? "bg-neutral rounded-l-lg" : ""
+                      }`}
+                    >
+                      {index + 1}
+                    </td>
+                    <td
+                      className={`px-4 py-2 ${index === 0 ? "bg-neutral" : ""}`}
+                    >
+                      {score.name}
+                    </td>
+                    <td
+                      className={`px-4 py-2 ${index === 0 ? "bg-neutral" : ""}`}
+                    >
+                      {score.wpm}
+                    </td>
+                    <td
+                      className={`px-4 py-2 ${index === 0 ? "bg-neutral" : ""}`}
+                    >
+                      {score.acc}%
+                    </td>
+                    <td
+                      className={`px-4 py-2 ${index === 0 ? "bg-neutral" : ""}`}
+                    >
+                      {score.time}
+                    </td>
+                    <td
+                      className={`px-4 py-2 ${
+                        index === 0 ? "bg-neutral rounded-r-lg" : ""
+                      }`}
+                    >
+                      {formatDate(score.date)}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
