@@ -7,11 +7,15 @@ router.get("/", async (req, res) => {
     const scores = await Score.find()
 
     const rankedScores = scores.map((score) => ({
-      ...score,
-      ranking: score.wpm - (100 - score.acc),
+      ...score.toObject(),
+      ranking: (score.wpm - score.wpm * (1 - score.acc / 100)).toFixed(2),
     }))
 
+    console.log(rankedScores)
+
     rankedScores.sort((a, b) => b.ranking - a.ranking)
+
+    console.log(rankedScores)
 
     res.json(rankedScores)
   } catch (err) {
