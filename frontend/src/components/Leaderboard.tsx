@@ -61,7 +61,7 @@ export function Leaderboard({ toggleModal }: LeaderboardProps) {
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-60 z-20 w-screen backdrop-filter backdrop-blur-[1px] ">
       <main id="modal" className="absolute z-20 flex flex-col items-end">
         <div className="bg-background rounded-lg p-6 pt-10 text-lg text-sub w-[590px] h-[325px] overflow-hidden">
-          <div className="rounded-lg overflow-auto max-h-[250px] custom-scrollbar flex justify-center">
+          <div className="rounded-lg overflow-auto max-h-[250px] flex justify-center">
             <table className="text-left mr-2 text-sm">
               <thead>
                 <tr className="text-neutral text-xs">

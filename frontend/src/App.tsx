@@ -20,7 +20,7 @@ function App() {
   return (
     <Router>
       <div
-        className={`font-cascadia-mono text-text bg-background w-screen min-w-screen h-screen min-h-screen flex flex-col items-center ${theme}`}
+        className={`font-cascadia-mono text-text bg-background w-screen min-w-screen h-screen min-h-screen flex flex-col items-center overflow-x-hidden custom-scrollbar ${theme}`}
       >
         <Header switchTheme={switchTheme} theme={theme} />
         <Routes>

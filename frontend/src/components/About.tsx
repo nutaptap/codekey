@@ -1,6 +1,6 @@
 export function About() {
   return (
-    <main className="w-screen bg-background flex justify-center mt-8 overflow-hidden">
+    <main className="w-screen bg-background flex justify-center mt-8">
       <div className="p-6 max-w-[700px]">
         <h1 className="text-sub text-2xl mb-6">about</h1>
         <section className="mb-16">
@@ -33,7 +33,7 @@ export function About() {
             your score on the leaderboard.
           </p>
         </section>
-        <section className="mb-20">
+        <section className="pb-20">
           <h2 className="text-main text-xl mb-4">contact</h2>
           <p>
             If you encounter a bug, have some feedback, or just want to say hi,
