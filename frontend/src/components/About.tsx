@@ -6,8 +6,8 @@ export function About() {
         <section className="mb-16">
           <p>
             Codekey is a typing test that will help you gain confidence and
-            speed writing JS.It's inspired on monkeytype, but each test consists
-            of small JS code blocks instead of regular text.
+            speed writing JS. It's inspired by monkeytype, but each test
+            consists of small JS code blocks instead of regular text.
           </p>
           <p>
             Because it presents the prompts and the typed characters on the same
