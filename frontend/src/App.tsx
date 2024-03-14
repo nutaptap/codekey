@@ -3,7 +3,7 @@ import { Header } from "./components/Header"
 import { Footer } from "./components/Footer"
 import { TypingTest } from "./components/TypingTest"
 import { Result } from "./components/Result"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { About } from "./components/About"
 import { Saved } from "./components/Saved"
 
@@ -16,6 +16,18 @@ function App() {
     setTheme(theme)
     localStorage.setItem("theme", theme)
   }
+
+  useEffect(() => {
+    const wakeUpServer = async () => {
+      try {
+        await fetch("https://codekey.cyclic.app/scores")
+      } catch (error) {
+        console.error("Error waking up server:", error)
+      }
+    }
+
+    wakeUpServer()
+  }, [])
 
   return (
     <Router>
