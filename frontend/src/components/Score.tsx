@@ -61,6 +61,7 @@ export function Score({ toggleModal, score }: ScoreProps) {
           className="p-2 bg-neutral w-40 rounded-md"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          maxLength={16}
         />
 
         <button
