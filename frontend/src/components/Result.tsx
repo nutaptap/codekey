@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { calculateWPM } from "../utils/calculateWPM"
 import { calculateAccuracy } from "../utils/calculateAccuracy"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
@@ -109,10 +109,16 @@ export function Result() {
       <section className="mt-10">
         <button
           onClick={toggleModal}
-          className="text-xl bg-gradient1 p-1 px-4 rounded-xl hover:bg-gradient2 duration-200"
+          className="text-xl bg-gradient1 p-1 px-4 rounded-xl hover:bg-gradient2 duration-200 mr-8"
         >
           save score
         </button>
+        <Link
+        to="/"
+          className="text-xl bg-neutral p-[6px] px-5 rounded-xl hover:bg-neutralAlt duration-200"
+        >
+          try again
+        </Link>
       </section>
       {modalOpen && (
         <Score
