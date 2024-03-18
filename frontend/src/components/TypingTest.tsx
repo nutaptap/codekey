@@ -92,6 +92,7 @@ export function TypingTest() {
         "Alt",
         "AltGraph",
         "ContextMenu",
+        "Dead"
       ]
 
       if (
@@ -138,15 +139,29 @@ export function TypingTest() {
       }
 
       if (typedCode[currentLine].length < originalCode[currentLine].length) {
-        if (e.key === "Dead") {
-          setTypedCode((prevTypedCode) => {
-            const updatedTypedCode = [...prevTypedCode]
-            updatedTypedCode[currentLine] += "ç"
-            return updatedTypedCode
-          })
+
+        if (e.key === "{" || e.key === "}") {
+          
+          if (e.key === '{') {
+            setTypedCode((prevTypedCode) => {
+              console.log("KEY '{' WAS PRESSED")
+              const updatedTypedCode = [...prevTypedCode];
+              updatedTypedCode[currentLine] += '{';
+              return updatedTypedCode;
+            });
+          } else if (e.key === '}') {
+            setTypedCode((prevTypedCode) => {
+              console.log("KEY '}' WAS PRESSED")
+              const updatedTypedCode = [...prevTypedCode];
+              updatedTypedCode[currentLine] += '}';
+              return updatedTypedCode;
+            });
+          } 
         } else {
           setTypedCode((prevTypedCode) => {
             const updatedTypedCode = [...prevTypedCode]
+            console.log("event.key = " + e.key)
+            console.log("event.code = " + e.code)
             updatedTypedCode[currentLine] += e.key
             return updatedTypedCode
           })
