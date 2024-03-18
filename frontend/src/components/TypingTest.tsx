@@ -21,9 +21,6 @@ export function TypingTest() {
   const [mistakes, setMistakes] = useState(0)
   const [start, setStart] = useState(false)
 
-  /* TESTING */
-  const [ekey, setEkey] = useState('')
-  const [ecode, setEcode] = useState('')
 
   function isCorrect(arrayIndex: number, charIndex: number) {
     const charOne = originalCode[arrayIndex]?.[charIndex]
@@ -149,30 +146,20 @@ export function TypingTest() {
           
           if (e.key === '{') {
             setTypedCode((prevTypedCode) => {
-              setEcode(e.code)
-              setEkey(e.key)
-              console.log("KEY '{' WAS PRESSED")
               const updatedTypedCode = [...prevTypedCode];
               updatedTypedCode[currentLine] += '{';
               return updatedTypedCode;
             });
           } else if (e.key === '}') {
             setTypedCode((prevTypedCode) => {
-              setEcode(e.code)
-              setEkey(e.key)
-              console.log("KEY '}' WAS PRESSED")
               const updatedTypedCode = [...prevTypedCode];
               updatedTypedCode[currentLine] += '}';
               return updatedTypedCode;
             });
           } 
         } else {
-          setEcode(e.code)
-          setEkey(e.key)
           setTypedCode((prevTypedCode) => {
             const updatedTypedCode = [...prevTypedCode]
-            console.log("event.key = " + e.key)
-            console.log("event.code = " + e.code)
             updatedTypedCode[currentLine] += e.key
             return updatedTypedCode
           })
@@ -313,12 +300,6 @@ export function TypingTest() {
           to reset
         </div>
       )}
-
-      {/* TESTING */}
-      <div className="border p-4 rounded-md mt-4">
-        <span className="flex items-center"> <p className="mr-4">Event key:</p> <p className="text-xl"> {ekey} </p> </span>
-        <span className="flex items-center"> <p className="mr-4">Event code:</p> <p className="text-xl"> {ecode} </p> </span>
-      </div>
     </main>
   )
 }
