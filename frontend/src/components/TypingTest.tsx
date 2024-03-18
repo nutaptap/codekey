@@ -96,7 +96,8 @@ export function TypingTest() {
         "Alt",
         "AltGraph",
         "ContextMenu",
-        "Dead"
+        "Dead",
+        "Control"
       ]
 
       if (
