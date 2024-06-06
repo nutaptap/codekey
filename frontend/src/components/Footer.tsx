@@ -1,11 +1,11 @@
-import { useState } from "react"
-import { Contact } from "./Contact"
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { Contact } from "./Contact";
+import { Link } from "react-router-dom";
 
 export function Footer() {
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
   function toggleModal() {
-    setModalOpen(!modalOpen)
+    setModalOpen(!modalOpen);
   }
 
   return (
@@ -33,7 +33,7 @@ export function Footer() {
               </Link>
             </li>
             <li className="mr-8 cursor-pointer">
-              <a
+              <button
                 onClick={toggleModal}
                 className="flex hover:text-text transition-all duration-200"
               >
@@ -48,7 +48,7 @@ export function Footer() {
                   />
                 </svg>
                 Contact
-              </a>
+              </button>
             </li>
             <li className="cursor-pointer">
               <a
@@ -76,5 +76,5 @@ export function Footer() {
         {modalOpen && <Contact toggleModal={toggleModal} />}
       </div>
     </footer>
-  )
+  );
 }

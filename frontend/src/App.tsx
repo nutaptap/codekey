@@ -1,33 +1,21 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import { Header } from "./components/Header"
-import { Footer } from "./components/Footer"
-import { TypingTest } from "./components/TypingTest"
-import { Result } from "./components/Result"
-import { useState, useEffect } from "react"
-import { About } from "./components/About"
-import { Saved } from "./components/Saved"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { TypingTest } from "./components/TypingTest";
+import { Result } from "./components/Result";
+import { useState } from "react";
+import { About } from "./components/About";
+import { Saved } from "./components/Saved";
 
 function App() {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "midnight"
-  )
+  );
 
   function switchTheme(theme: string) {
-    setTheme(theme)
-    localStorage.setItem("theme", theme)
+    setTheme(theme);
+    localStorage.setItem("theme", theme);
   }
-
-  useEffect(() => {
-    const wakeUpServer = async () => {
-      try {
-        await fetch("https://codekey.cyclic.app/scores")
-      } catch (error) {
-        console.error("Error waking up server:", error)
-      }
-    }
-
-    wakeUpServer()
-  }, [])
 
   return (
     <Router>
@@ -44,7 +32,7 @@ function App() {
         <Footer />
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

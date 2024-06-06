@@ -1,22 +1,22 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import { Theme } from "./Theme"
-import { Leaderboard } from "./Leaderboard"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Theme } from "./Theme";
+import { Leaderboard } from "./Leaderboard";
 
 interface HeaderProps {
-  switchTheme: (theme: string) => void
-  theme: string
+  switchTheme: (theme: string) => void;
+  theme: string;
 }
 
 export function Header({ switchTheme, theme }: HeaderProps) {
-  const [themeModalOpen, setThemeModalOpen] = useState(false)
+  const [themeModalOpen, setThemeModalOpen] = useState(false);
   function toggleThemeModal() {
-    setThemeModalOpen(!themeModalOpen)
+    setThemeModalOpen(!themeModalOpen);
   }
 
-  const [leaderboardModalOpen, setLeaderboardModalOpen] = useState(false)
+  const [leaderboardModalOpen, setLeaderboardModalOpen] = useState(false);
   function toggleLeaderboardModal() {
-    setLeaderboardModalOpen(!leaderboardModalOpen)
+    setLeaderboardModalOpen(!leaderboardModalOpen);
   }
   return (
     <>
@@ -62,6 +62,7 @@ export function Header({ switchTheme, theme }: HeaderProps) {
           <button
             onClick={toggleThemeModal}
             className="text-sub hover:text-text transition-all duration-200"
+            aria-label="Select color theme"
           >
             <svg
               className="w-5 h-5"
@@ -87,5 +88,5 @@ export function Header({ switchTheme, theme }: HeaderProps) {
         <Leaderboard toggleModal={toggleLeaderboardModal} />
       )}
     </>
-  )
+  );
 }
