@@ -34,7 +34,7 @@ export function Leaderboard({ toggleModal }: LeaderboardProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://codekey.cyclic.app/scores")
+        const response = await fetch("https://codekey-production.up.railway.app/scores")
         if (!response.ok) {
           throw new Error("Failed to fetch scores")
         }

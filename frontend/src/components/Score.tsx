@@ -16,7 +16,7 @@ export function Score({ toggleModal, score }: ScoreProps) {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     try {
-      await fetch("https://codekey.cyclic.app/scores", {
+      await fetch("https://codekey-production.up.railway.app/scores", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
