@@ -1,41 +1,40 @@
-import { useState, useEffect, useCallback } from "react"
-import { useNavigate } from "react-router-dom"
-import { codeBlocks } from "../data/codeBlocks.json"
-import { TimeMenu } from "./TimeMenu"
-
-function getRandom() {
-  const maxLength = codeBlocks.length
-  const randomIndex = Math.floor(Math.random() * maxLength)
-  return codeBlocks[randomIndex]
-}
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { codeBlocks } from "../data/codeBlocks.json";
+import { TimeMenu } from "./TimeMenu";
+import { useTimer } from "../hooks/useTimer";
 
 export function TypingTest() {
-  const navigate = useNavigate()
-  const [originalCode, setOriginalCode] = useState(getRandom())
-  const initialTypedCode = originalCode.map(() => "")
-  const [typedCode, setTypedCode] = useState(initialTypedCode)
-  const [currentLine, setCurrentLine] = useState(0)
-  const [time, setTime] = useState(15)
-  const [maxTime, setMaxTime] = useState(time)
-  const [score, setScore] = useState(0)
-  const [mistakes, setMistakes] = useState(0)
-  const [start, setStart] = useState(false)
+  const navigate = useNavigate();
+  const { time, setTime, start, setStart } = useTimer(15);
+  const [originalCode, setOriginalCode] = useState(getRandomCodeBlock());
+  const initialTypedCode = originalCode.map(() => "");
+  const [typedCode, setTypedCode] = useState(initialTypedCode);
+  const [currentLine, setCurrentLine] = useState(0);
+  const [score, setScore] = useState(0);
+  const [mistakes, setMistakes] = useState(0);
+  const [maxTime, setMaxTime] = useState(time);
 
+  function getRandomCodeBlock() {
+    const maxLength = codeBlocks.length;
+    const randomIndex = Math.floor(Math.random() * maxLength);
+    return codeBlocks[randomIndex];
+  }
 
   function isCorrect(arrayIndex: number, charIndex: number) {
-    const charOne = originalCode[arrayIndex]?.[charIndex]
-    const charTwo = typedCode[arrayIndex]?.[charIndex]
+    const charOne = originalCode[arrayIndex]?.[charIndex];
+    const charTwo = typedCode[arrayIndex]?.[charIndex];
 
-    return charOne === charTwo ? true : false
+    return charOne === charTwo ? true : false;
   }
 
   function isTyped(arrayIndex: number, charIndex: number) {
-    const line = typedCode[arrayIndex]
+    const line = typedCode[arrayIndex];
     if (line === undefined) {
-      return false
+      return false;
     }
-    const char = line[charIndex]
-    return char !== undefined
+    const char = line[charIndex];
+    return char !== undefined;
   }
 
   const completeCodeBlock = useCallback(() => {
@@ -43,38 +42,38 @@ export function TypingTest() {
       const thisScore = typedCode.reduce(
         (total, string) => total + string.length,
         0
-      )
-      const totalScore = thisScore + score
-      return totalScore
+      );
+      const totalScore = thisScore + score;
+      return totalScore;
     }
 
     function calculateMistakes() {
       const totalMistakes = originalCode.reduce((total, line, lineIndex) => {
-        let thisMistakes = 0
+        let thisMistakes = 0;
         for (let charIndex = 0; charIndex < line.length; charIndex++) {
           if (typedCode[lineIndex]?.[charIndex] !== line[charIndex]) {
-            thisMistakes++
+            thisMistakes++;
           }
         }
-        return total + thisMistakes
-      }, 0)
+        return total + thisMistakes;
+      }, 0);
 
-      return mistakes + totalMistakes
+      return mistakes + totalMistakes;
     }
 
-    setScore(calculateScore())
-    setMistakes(calculateMistakes())
-    const newCodeBlock = getRandom()
-    setOriginalCode(newCodeBlock)
-    setTypedCode(initialTypedCode)
-    setCurrentLine(0)
-  }, [initialTypedCode, mistakes, originalCode, score, typedCode])
+    setScore(calculateScore());
+    setMistakes(calculateMistakes());
+    const newCodeBlock = getRandomCodeBlock();
+    setOriginalCode(newCodeBlock);
+    setTypedCode(initialTypedCode);
+    setCurrentLine(0);
+  }, [initialTypedCode, mistakes, originalCode, score, typedCode]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        location.reload()
-        return
+        location.reload();
+        return;
       }
 
       const specialKeys = [
@@ -94,101 +93,87 @@ export function TypingTest() {
         "AltGraph",
         "ContextMenu",
         "Dead",
-        "Control"
-      ]
+        "Control",
+      ];
 
       if (
         specialKeys.includes(e.key) ||
         (e.key.length > 1 && e.key.startsWith("F"))
       ) {
-        e.preventDefault()
-        return
+        e.preventDefault();
+        return;
       }
 
       if (e.key === "Enter") {
         if (originalCode.length == currentLine + 1) {
-          return
+          return;
         } else {
-          const newLine = currentLine + 1
-          setCurrentLine(newLine)
-          return
+          const newLine = currentLine + 1;
+          setCurrentLine(newLine);
+          return;
         }
       }
 
       if (e.key === "Backspace" || e.key === "Delete") {
         if (typedCode[currentLine].length === 0 && currentLine !== 0) {
-          const newLine = currentLine - 1
-          setCurrentLine(newLine)
+          const newLine = currentLine - 1;
+          setCurrentLine(newLine);
           setTypedCode((prevTypedCode) => {
-            const updatedTypedCode = [...prevTypedCode]
-            updatedTypedCode[newLine] = prevTypedCode[newLine].slice(0, -1)
-            return updatedTypedCode
-          })
-          return
+            const updatedTypedCode = [...prevTypedCode];
+            updatedTypedCode[newLine] = prevTypedCode[newLine].slice(0, -1);
+            return updatedTypedCode;
+          });
+          return;
         }
 
         setTypedCode((prevTypedCode) => {
-          const updatedTypedCode = [...prevTypedCode]
+          const updatedTypedCode = [...prevTypedCode];
           updatedTypedCode[currentLine] = prevTypedCode[currentLine].slice(
             0,
             -1
-          )
+          );
 
-          return updatedTypedCode
-        })
+          return updatedTypedCode;
+        });
 
-        return
+        return;
       }
 
       if (typedCode[currentLine].length < originalCode[currentLine].length) {
-
         if (e.key === "{" || e.key === "}") {
-          
-          if (e.key === '{') {
+          if (e.key === "{") {
             setTypedCode((prevTypedCode) => {
               const updatedTypedCode = [...prevTypedCode];
-              updatedTypedCode[currentLine] += '{';
+              updatedTypedCode[currentLine] += "{";
               return updatedTypedCode;
             });
-          } else if (e.key === '}') {
+          } else if (e.key === "}") {
             setTypedCode((prevTypedCode) => {
               const updatedTypedCode = [...prevTypedCode];
-              updatedTypedCode[currentLine] += '}';
+              updatedTypedCode[currentLine] += "}";
               return updatedTypedCode;
             });
-          } 
+          }
         } else {
           setTypedCode((prevTypedCode) => {
-            const updatedTypedCode = [...prevTypedCode]
-            updatedTypedCode[currentLine] += e.key
-            return updatedTypedCode
-          })
+            const updatedTypedCode = [...prevTypedCode];
+            updatedTypedCode[currentLine] += e.key;
+            return updatedTypedCode;
+          });
         }
       }
 
       if (start === false) {
-        setStart(true)
-        let intervalId: number | undefined = undefined
-
-        intervalId = setInterval(() => {
-          setTime((prevTime) => {
-            if (prevTime > 0) {
-              return prevTime - 1
-            } else {
-              clearInterval(intervalId)
-              return prevTime
-            }
-          })
-        }, 1000)
-
-        return () => clearInterval(intervalId)
+        setStart(true);
+        console.log("switched to true");
       }
-    }
-    window.addEventListener("keydown", handleKeyDown)
+    };
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown)
-    }
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [
+    currentLine,
     typedCode,
     currentLine,
     originalCode,
@@ -197,25 +182,27 @@ export function TypingTest() {
     initialTypedCode,
     mistakes,
     score,
-    start,
     completeCodeBlock,
     navigate,
-  ])
+  ]);
 
   useEffect(() => {
     if (
       currentLine === originalCode.length - 1 &&
       typedCode[currentLine].length === originalCode[currentLine].length
     ) {
-      completeCodeBlock()
+      completeCodeBlock();
     }
-  }, [typedCode, originalCode, currentLine, completeCodeBlock])
+  }, [typedCode, originalCode, currentLine, completeCodeBlock]);
 
   function handleTime(e: React.MouseEvent<HTMLLIElement>) {
-    const newTime = parseInt((e.target as HTMLLIElement).textContent ?? "0", 10)
+    const newTime = parseInt(
+      (e.target as HTMLLIElement).textContent ?? "0",
+      10
+    );
     if (time >= maxTime) {
-      setMaxTime(newTime)
-      setTime(newTime)
+      setMaxTime(newTime);
+      setTime(newTime);
     }
   }
 
@@ -224,21 +211,21 @@ export function TypingTest() {
       const thisScore = typedCode.reduce(
         (total, string) => total + string.length,
         0
-      )
-      const totalScore = thisScore + score
+      );
+      const totalScore = thisScore + score;
 
       const thislMistakes = typedCode.reduce((total, line, lineIndex) => {
-        let mistakes = 0
+        let mistakes = 0;
         for (let charIndex = 0; charIndex < line.length; charIndex++) {
           if (originalCode[lineIndex]?.[charIndex] !== line[charIndex]) {
-            mistakes++
+            mistakes++;
           }
         }
-        return total + mistakes
-      }, 0)
-      const totalMistakes = thislMistakes + mistakes
+        return total + mistakes;
+      }, 0);
+      const totalMistakes = thislMistakes + mistakes;
 
-      navigate("/result", { state: { totalScore, totalMistakes, maxTime } })
+      navigate("/result", { state: { totalScore, totalMistakes, maxTime } });
     }
   }, [
     time,
@@ -249,7 +236,7 @@ export function TypingTest() {
     mistakes,
     originalCode,
     typedCode,
-  ])
+  ]);
 
   return (
     <main className="my-auto">
@@ -301,5 +288,5 @@ export function TypingTest() {
         </div>
       )}
     </main>
-  )
+  );
 }
