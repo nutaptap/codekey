@@ -10,11 +10,10 @@ interface HeaderProps {
 
 export function Header({ switchTheme, theme }: HeaderProps) {
   const [themeModalOpen, setThemeModalOpen] = useState(false);
+  const [leaderboardModalOpen, setLeaderboardModalOpen] = useState(false);
   function toggleThemeModal() {
     setThemeModalOpen(!themeModalOpen);
   }
-
-  const [leaderboardModalOpen, setLeaderboardModalOpen] = useState(false);
   function toggleLeaderboardModal() {
     setLeaderboardModalOpen(!leaderboardModalOpen);
   }

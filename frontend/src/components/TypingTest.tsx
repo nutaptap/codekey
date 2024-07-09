@@ -140,32 +140,15 @@ export function TypingTest() {
       }
 
       if (typedCode[currentLine].length < originalCode[currentLine].length) {
-        if (e.key === "{" || e.key === "}") {
-          if (e.key === "{") {
-            setTypedCode((prevTypedCode) => {
-              const updatedTypedCode = [...prevTypedCode];
-              updatedTypedCode[currentLine] += "{";
-              return updatedTypedCode;
-            });
-          } else if (e.key === "}") {
-            setTypedCode((prevTypedCode) => {
-              const updatedTypedCode = [...prevTypedCode];
-              updatedTypedCode[currentLine] += "}";
-              return updatedTypedCode;
-            });
-          }
-        } else {
-          setTypedCode((prevTypedCode) => {
-            const updatedTypedCode = [...prevTypedCode];
-            updatedTypedCode[currentLine] += e.key;
-            return updatedTypedCode;
-          });
-        }
+        setTypedCode((prevTypedCode) => {
+          const updatedTypedCode = [...prevTypedCode];
+          updatedTypedCode[currentLine] += e.key;
+          return updatedTypedCode;
+        });
       }
 
       if (start === false) {
         setStart(true);
-        console.log("switched to true");
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -177,8 +160,6 @@ export function TypingTest() {
     typedCode,
     currentLine,
     originalCode,
-    time,
-    maxTime,
     initialTypedCode,
     mistakes,
     score,
@@ -227,16 +208,7 @@ export function TypingTest() {
 
       navigate("/result", { state: { totalScore, totalMistakes, maxTime } });
     }
-  }, [
-    time,
-    maxTime,
-    navigate,
-    completeCodeBlock,
-    score,
-    mistakes,
-    originalCode,
-    typedCode,
-  ]);
+  }, [time]);
 
   return (
     <main className="my-auto">
